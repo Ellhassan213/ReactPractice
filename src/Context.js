@@ -5,6 +5,13 @@ const Context = React.createContext()
 function ContextProvider({children}) {
     const [allPhotos, setAllPhotos] = useState([])
     const [cartItems, setCartItems] = useState([])
+    const [formInputs, setFormInputs] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: ""
+    })
     
     const url = "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
     useEffect(() => {
@@ -35,6 +42,14 @@ function ContextProvider({children}) {
     function emptyCart() {
         setCartItems([])
     }
+
+    function handleChange(event) {
+        const {name, value} = event.target
+        setFormInputs({
+            ...formInputs,
+            [name]: value
+        })
+    }
     
     return (
         <Context.Provider value={{
@@ -43,7 +58,9 @@ function ContextProvider({children}) {
             cartItems, 
             addToCart, 
             removeFromCart, 
-            emptyCart
+            emptyCart,
+            formInputs,
+            handleChange
         }}>
             {children}
         </Context.Provider>

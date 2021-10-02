@@ -1,15 +1,12 @@
 import React, {useState, useContext} from "react"
 import {Context} from "../Context"
 import OrderSummary from "../components/OrderSummary"
+import {useHistory} from "react-router-dom"
 
 function Checkout() {
+    const history = useHistory()
+    const {formInputs, handleChange, emptyCart} = useContext(Context)
     const [buttonText, setButtonText] = useState("Place Order")
-    const [formInputs, setFormInputs] = useState({
-        firstName: "",
-        lastName: "",
-        email: ""
-    })
-    const {emptyCart} = useContext(Context)
 
     function placeOrder(event) {
         event.preventDefault()
@@ -18,20 +15,16 @@ function Checkout() {
             console.log("Order placed!")
             setButtonText("Place Order")
             emptyCart()
+            history.push("/confirmation")
         }, 3000)
-    }
-
-    function handleChange(event) {
-        const {name, value} = event.target
-        setFormInputs({
-            ...formInputs,
-            [name]: value
-        })
     }
 
     return (
         <main className="checkout-page">
             <h1>Checkout Page</h1>
+            <hr />
+            <OrderSummary />
+            <hr />
             <h2>Delivery</h2>
             <form onSubmit={placeOrder}>
                 <input
@@ -58,9 +51,24 @@ function Checkout() {
                     placeholder="Email" 
                 />
                 <br />
-                <button onClick={placeOrder}>{buttonText}</button>
+                <input
+                    type="text"
+                    name="phone" 
+                    value={formInputs.phone}
+                    onChange={handleChange} 
+                    placeholder="Phone Number" 
+                />
+                <br />
+                <textarea
+                    type="text"
+                    name="address"
+                    value={formInputs.address}
+                    onChange={handleChange}
+                    placeholder="Address"
+                />
+                <br />
+                {<button onClick={placeOrder}>{buttonText}</button>}
             </form>
-            <OrderSummary />
         </main>
     )
 }

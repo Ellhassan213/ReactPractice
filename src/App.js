@@ -5,6 +5,7 @@ import Header from "./components/Header"
 import Cart from "./pages/Cart"
 import Photos from "./pages/Photos"
 import Checkout from "./pages/Checkout"
+import OrderConfirmation from "./components/OrderConfirmation"
 
 function App() {    
     return (
@@ -21,6 +22,10 @@ function App() {
 
                 <Route path="/checkout">
                     <Checkout />
+                </Route>
+
+                <Route path="/confirmation">
+                    <OrderConfirmation />
                 </Route>
             </Switch>
         </div>
