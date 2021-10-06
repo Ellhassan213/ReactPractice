@@ -12,7 +12,7 @@ function Photos() {
     ))
     
     return (
-        <main className="photos">
+        <main className="photos" data-testid="photos">
             {imageElements}
         </main>
     )

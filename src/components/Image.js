@@ -9,18 +9,18 @@ function Image({className, img}) {
     
     function heartIcon() {
         if(img.isFavorite) {
-            return <i className="ri-heart-fill favorite" onClick={() => toggleFavorite(img.id)}></i>
+            return <i data-testid="heartfill" className="ri-heart-fill favorite" onClick={() => toggleFavorite(img.id)}></i>
         } else if(hovered) {
-            return <i className="ri-heart-line favorite" onClick={() => toggleFavorite(img.id)}></i>
+            return <i data-testid="heartline" className="ri-heart-line favorite" onClick={() => toggleFavorite(img.id)}></i>
         }
     }
     
     function cartIcon() {
         const alreadyInCart = cartItems.some(item => item.id === img.id)
         if(alreadyInCart) {
-            return <i className="ri-shopping-cart-fill cart" onClick={() => removeFromCart(img.id)}></i>
+            return <i data-testid="cartfill" className="ri-shopping-cart-fill cart" onClick={() => removeFromCart(img.id)}></i>
         } else if(hovered) {
-            return <i className="ri-add-circle-line cart" onClick={() => addToCart(img)}></i>
+            return <i data-testid="cartline" className="ri-add-circle-line cart" onClick={() => addToCart(img)}></i>
         }
     }
 
@@ -30,7 +30,7 @@ function Image({className, img}) {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <img src={img.url} className="image-grid"/>
+            <img data-testid="image" src={img.url} className="image-grid"/>
             {heartIcon()}
             {cartIcon()}
         </div>
