@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react"
 import {Context} from "../Context"
 
-function CartItem({item}) {
+const CartItem = ({item}) => {
     const [hovered, setHovered] = useState(false)
     const {removeFromCart} = useContext(Context)
     
@@ -17,7 +17,7 @@ function CartItem({item}) {
             >
             </i>
             
-            <img src={item.url} width="130px" />
+            <img src={item.url} width="130px" alt="Cart Item"/>
             <p>$5.99</p>
         </div>
     )

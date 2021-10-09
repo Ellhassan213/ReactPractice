@@ -1,7 +1,7 @@
 import React from "react"
 import useTotalCost from "../hooks/useTotalCost"
 
-function OrderSummary() {
+const OrderSummary = () => {
     const deliveryCost = 1.99
     const total = useTotalCost()
     const totalCost = (total + deliveryCost).toLocaleString("en-US", {style: "currency", currency: "USD"})

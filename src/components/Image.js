@@ -3,19 +3,20 @@ import PropTypes from "prop-types"
 
 import {Context} from "../Context"
 
-function Image({className, img}) {
+const Image = ({className, img}) => {
     const [hovered, setHovered] = useState(false)
-    const {toggleFavorite, addToCart, cartItems, removeFromCart} = useContext(Context)
+    const {addToCart, cartItems, removeFromCart, favoriteItems, addToFavorite, removeFromFavorite} = useContext(Context)
     
-    function heartIcon() {
-        if(img.isFavorite) {
-            return <i data-testid="heartfill" className="ri-heart-fill favorite" onClick={() => toggleFavorite(img.id)}></i>
+    const heartIcon = () => {
+        const alreadyInFavorite = favoriteItems.some(item => item.id === img.id)
+        if(alreadyInFavorite) {
+            return <i data-testid="heartfill" className="ri-heart-fill favorite" onClick={() => removeFromFavorite(img.id)}></i>
         } else if(hovered) {
-            return <i data-testid="heartline" className="ri-heart-line favorite" onClick={() => toggleFavorite(img.id)}></i>
+            return <i data-testid="heartline" className="ri-heart-line favorite" onClick={() => addToFavorite(img)}></i>
         }
     }
     
-    function cartIcon() {
+    const cartIcon = () => {
         const alreadyInCart = cartItems.some(item => item.id === img.id)
         if(alreadyInCart) {
             return <i data-testid="cartfill" className="ri-shopping-cart-fill cart" onClick={() => removeFromCart(img.id)}></i>
@@ -30,7 +31,7 @@ function Image({className, img}) {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <img data-testid="image" src={img.url} className="image-grid"/>
+            <img data-testid="image" src={img.url} className="image-grid" alt={img.id}/>
             {heartIcon()}
             {cartIcon()}
         </div>

@@ -4,7 +4,7 @@ import Image from "../components/Image"
 import {Context} from "../Context"
 import {getClass} from "../utils"
 
-function Photos() {
+const Photos = () => {
     const {allPhotos} = useContext(Context)
     
     const imageElements = allPhotos.map((img, i) => (

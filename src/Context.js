@@ -2,9 +2,10 @@ import React, {useState, useEffect} from "react"
 
 const Context = React.createContext()
 
-function ContextProvider({children}) {
+const ContextProvider = ({children}) => {
     const [allPhotos, setAllPhotos] = useState([])
     const [cartItems, setCartItems] = useState([])
+    const [favoriteItems, setFavoriteItems] = useState([])
     const [formInputs, setFormInputs] = useState({
         firstName: "",
         lastName: "",
@@ -20,7 +21,7 @@ function ContextProvider({children}) {
             .then(data => setAllPhotos(data))
     }, [])
     
-    function toggleFavorite(id) {
+    const toggleFavorite = (id) => {
         const updatedArr = allPhotos.map(photo => {
             if(photo.id === id) {
                 return {...photo, isFavorite: !photo.isFavorite}
@@ -30,20 +31,30 @@ function ContextProvider({children}) {
         
         setAllPhotos(updatedArr)
     }
+
+    const addToFavorite = (newItem) => {
+        setFavoriteItems(prevItems => [...prevItems, newItem])
+        toggleFavorite(newItem.id)
+    }
+
+    const removeFromFavorite = (id) => {
+        setFavoriteItems(prevItems => prevItems.filter(item => item.id !== id))
+        toggleFavorite(id)
+    }
     
-    function addToCart(newItem) {
+    const addToCart = (newItem) => {
         setCartItems(prevItems => [...prevItems, newItem])
     }
     
-    function removeFromCart(id) {
+    const removeFromCart = (id) => {
         setCartItems(prevItems => prevItems.filter(item => item.id !== id))
     }
     
-    function emptyCart() {
+    const emptyCart = () => {
         setCartItems([])
     }
 
-    function handleChange(event) {
+    const handleChange = (event) => {
         const {name, value} = event.target
         setFormInputs({
             ...formInputs,
@@ -60,7 +71,10 @@ function ContextProvider({children}) {
             removeFromCart, 
             emptyCart,
             formInputs,
-            handleChange
+            handleChange,
+            favoriteItems,
+            addToFavorite,
+            removeFromFavorite
         }}>
             {children}
         </Context.Provider>

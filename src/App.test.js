@@ -1,7 +1,6 @@
 import React from "react"
-import {render, fireEvent, screen, cleanup, waitFor} from "./custom-render"
+import {render, fireEvent, screen, cleanup} from "./custom-render"
 import App from "./App"
-import Photos from "./pages/Photos"
 import Image from "./components/Image"
 
 afterEach(cleanup)
@@ -34,7 +33,7 @@ describe("<Image />", () => {
 })
 
 describe("<Image />", () => {
-    it("toggles cart icon on click", () => {
+    it("adds to cart and toggles icon on click", () => {
         const img = {id:"1", url:"http:image", isFavorite:false}
         render(<Image key={img.id} img={img}/>)
         
@@ -46,13 +45,12 @@ describe("<Image />", () => {
 })
 
 describe("<Image />", () => {
-    it("toggles favorite icon on click", () => {
+    it("adds to favorite and toggles icon on click", () => {
         const img = {id:"1", url:"http:image", isFavorite:false}
         render(<Image key={img.id} img={img}/>)
         
         fireEvent.mouseOver(screen.getByTestId("image"))
         fireEvent.click(screen.getByTestId("heartline"))
-        fireEvent.click(screen.getByTestId("cartline"))
 
         expect(screen.getByTestId("heartfill")).toBeInTheDocument()
     })

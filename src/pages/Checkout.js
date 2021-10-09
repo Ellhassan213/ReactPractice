@@ -3,7 +3,7 @@ import {Context} from "../Context"
 import OrderSummary from "../components/OrderSummary"
 import {useHistory} from "react-router-dom"
 
-function Checkout() {
+const Checkout = () => {
     const history = useHistory()
     const {formInputs, handleChange, emptyCart} = useContext(Context)
     const [buttonText, setButtonText] = useState("Place Order")

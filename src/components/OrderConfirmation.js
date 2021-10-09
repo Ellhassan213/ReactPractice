@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import { Context } from "../Context";
 
-function OrderConfirmation() {
+const OrderConfirmation = () => {
     const {formInputs} = useContext(Context)
     // const userDetails = Object.keys(formInputs).map((keyName, i) => (
     //     <p key={i}>{keyName}: {formInputs[keyName]}</p>

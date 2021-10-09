@@ -4,7 +4,7 @@ import CartItem from "../components/CartItem"
 import {Link} from "react-router-dom"
 import useTotalCost from "../hooks/useTotalCost"
 
-function Cart() {
+const Cart = () => {
     const {cartItems} = useContext(Context)
     const totalCost = useTotalCost()
     const totalCostDisplay = totalCost.toLocaleString("en-US", {style: "currency", currency: "USD"})

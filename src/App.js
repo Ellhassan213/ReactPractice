@@ -7,7 +7,7 @@ import Photos from "./pages/Photos"
 import Checkout from "./pages/Checkout"
 import OrderConfirmation from "./components/OrderConfirmation"
 
-function App() {    
+const App = () => {    
     return (
         <div>
             <Header />
