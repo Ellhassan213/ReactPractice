@@ -5,10 +5,10 @@ import {useHistory} from "react-router-dom"
 
 const Checkout = () => {
     const history = useHistory()
-    const {formInputs, handleChange, emptyCart} = useContext(Context)
+    const {formInputs, formInputsErrors, handleChange, emptyCart} = useContext(Context)
     const [buttonText, setButtonText] = useState("Place Order")
 
-    function placeOrder(event) {
+    const placeOrder = (event) => {
         event.preventDefault()
         setButtonText("Ordering...")
         setTimeout(() => {
@@ -31,7 +31,7 @@ const Checkout = () => {
                             name="firstName" 
                             value={formInputs.firstName}
                             onChange={handleChange} 
-                            placeholder="First Name" 
+                            placeholder="First Name"
                         />
                         <br />
                         <input
@@ -66,7 +66,7 @@ const Checkout = () => {
                             placeholder="Address"
                         />
                         <br />
-                        {<button onClick={placeOrder}>{buttonText}</button>}
+                        <button className="place-order" onClick={placeOrder}>{buttonText}</button>
                     </form>
                 </div>
                 <div className="order-summary">

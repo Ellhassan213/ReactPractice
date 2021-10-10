@@ -13,8 +13,15 @@ const ContextProvider = ({children}) => {
         phone: "",
         address: ""
     })
+    const [formInputsErrors, setFormInputsErrors] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: ""
+    })
     
-    const url = "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
+    const url = "images.json"
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -54,12 +61,23 @@ const ContextProvider = ({children}) => {
         setCartItems([])
     }
 
+    const validateFormInput = (name, value) => {
+        if(value <= 0) {
+            console.log(name + " must not be empty!")
+            setFormInputsErrors({
+                ...formInputsErrors,
+                [name]: "is empty!"
+            })
+        }
+    }
+
     const handleChange = (event) => {
         const {name, value} = event.target
         setFormInputs({
             ...formInputs,
             [name]: value
         })
+        validateFormInput(name, value)
     }
     
     return (
@@ -74,7 +92,8 @@ const ContextProvider = ({children}) => {
             handleChange,
             favoriteItems,
             addToFavorite,
-            removeFromFavorite
+            removeFromFavorite,
+            formInputsErrors
         }}>
             {children}
         </Context.Provider>
