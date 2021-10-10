@@ -29,29 +29,14 @@ main.cart-page {
     text-align: center;
 }
 
-.cart-page .total-cost {
+.total-cost {
     text-align: right;
     font-size: 1.3em;
 }
 
-.cart-page div.order-button {
+.cart-page > div.order-button {
     display: flex;
     justify-content: center;
-}
-
-div.order-button > button {
-    border-color: var(--black);
-    cursor: pointer;
-    padding: 15px;
-    transition: all .2s ease-in-out;
-}
-
-div.order-button > button:focus {
-    outline: none;
-}
-
-div.order-button > button:disabled {
-    border-color: lightgray;
 }
 
 .checkout-link {
@@ -59,8 +44,8 @@ div.order-button > button:disabled {
     text-decoration: none;
     background-color: lightgray;
     border: 1px solid black;
-    padding-left: 5%;
-    padding-right: 5%;
+    border-radius: 10%;
+    padding: 0 2%;
     color: black;
   }
 
@@ -151,29 +136,35 @@ header {
 .header-link:active { color: var(--light-blue); }
 
 
-.checkout-page .order-summary {
+.order-summary {
     text-align: right;
-    padding-right: 5%;
+    margin-left: 10px;
 }
 
 .checkout-page > h1 {
     text-align: center;
 }
 
-input{
+h2, h3 {
     margin: 10px;
-    size: auto;
+    padding-top: 20px;
 }
 
-/* .checkout-page div.order-button {
+input {
+    margin: 10px;
+}
+
+button {
+    margin: 10px;
+    background-color: lightgray;
+    padding: 15px;
+}
+
+textarea {
+    margin: 10px;
+}
+
+.columns {
     display: flex;
-    justify-content: center;
-} */
-
-/* a {
-    text-decoration: none;
+    justify-content: space-between;
 }
-
-a:visited { color: var(--light-blue); }
-a:hover { color: var(--light-blue); }
-a:active { color: var(--light-blue); } */
