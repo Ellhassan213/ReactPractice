@@ -1,4 +1,4 @@
-export function getClass(i) {
+export const getClass = (i) => {
     if (i % 5 === 0) {
         return 'big';
     }
