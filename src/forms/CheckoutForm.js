@@ -34,7 +34,7 @@ const CheckoutForm = () => {
     }
 
     return (
-        <form onSubmit={placeOrder}>
+        <form className="checkout-form" onSubmit={placeOrder}>
             <input
                 type="text"
                 name="firstName" 

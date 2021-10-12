@@ -21,10 +21,6 @@ main.photos {
     grid-auto-flow: dense;
 }
 
-main.cart-page {
-    padding: 10px;
-}
-
 .cart-page > h1 {
     text-align: center;
 }
@@ -34,7 +30,7 @@ main.cart-page {
     font-size: 1.3em;
 }
 
-.cart-page > div.order-button {
+.order-button {
     display: flex;
     justify-content: center;
 }
@@ -42,15 +38,15 @@ main.cart-page {
 .checkout-link {
     display: flex;
     text-decoration: none;
-    background-color: lightgray;
-    border: 1px solid black;
+    background-color: var(--light-blue);
+    border: 1px solid var(--black);
     border-radius: 10%;
     padding: 0 2%;
     color: black;
   }
 
 .checkout-link:hover {
-    color: var(--light-blue)
+    color: var(--pink)
 }
 
 .cart-item {
@@ -143,26 +139,16 @@ header {
     text-align: center;
 }
 
-h2, h3 {
-    margin: 10px;
-    padding-top: 20px;
-}
-
-input {
+.checkout-form > input, textarea, button, h2, h3 {
     margin: 10px;
 }
 
-button {
-    margin: 10px;
-    background-color: lightgray;
+.checkout-form > button {
+    background-color: var(--light-blue);
     padding: 15px;
 }
 
-textarea {
-    margin: 10px;
-}
-
-.columns {
+.checkout-columns {
     display: flex;
     justify-content: space-between;
 }
