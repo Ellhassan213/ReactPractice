@@ -14,10 +14,10 @@ const CheckoutForm = () => {
         event.preventDefault()
         const errors = handleSubmit()
         if(errors === 0) {
-            setButtonText("Submitting...")
+            setButtonText("Ordering...")
             setTimeout(() => {
                 console.log("Order placed!")
-                setButtonText("Submit")
+                setButtonText("Place Order")
                 emptyCart()
             }, 3000)
         }
