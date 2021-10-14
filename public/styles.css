@@ -139,8 +139,13 @@ header {
     text-align: center;
 }
 
-.checkout-form > input, textarea, button, h2, h3 {
-    margin: 10px;
+.checkout-form > input, textarea, button, h2, h3, p {
+    margin-left: 10px;
+}
+
+.checkout-form > p {
+    font-size: 0.7em;
+    color: var(--red);
 }
 
 .checkout-form > button {

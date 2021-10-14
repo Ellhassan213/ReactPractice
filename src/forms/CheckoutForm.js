@@ -1,36 +1,26 @@
 import React, {useState, useContext} from "react"
 import { Context } from "../Context"
-import {useHistory} from "react-router-dom"
+import useForm from "../hooks/useForm"
+import FormFieldErrorDisplay from "../components/FormFieldErrorDisplay"
 
 const CheckoutForm = () => {
-    const history = useHistory()
     const {emptyCart} = useContext(Context)
-    const [buttonText, setButtonText] = useState("Place Order")
-    const [formInputs, setFormInputs] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        address: ""
-    })
+    const [buttonText, setButtonText] = useState("Submit")
 
-    const handleChange = (event) => {
-        const {name, value} = event.target
-        setFormInputs({
-            ...formInputs,
-            [name]: value
-        })
-    }
+    const {formInputs, formInputsErrors,
+        handleChange, handleBlur, handleSubmit} = useForm()
 
     const placeOrder = (event) => {
         event.preventDefault()
-        setButtonText("Ordering...")
-        setTimeout(() => {
-            console.log("Order placed!")
-            setButtonText("Place Order")
-            emptyCart()
-            // history.push("/confirmation")
-        }, 3000)
+        const errors = handleSubmit()
+        if(errors === 0) {
+            setButtonText("Submitting...")
+            setTimeout(() => {
+                console.log("Order placed!")
+                setButtonText("Submit")
+                emptyCart()
+            }, 3000)
+        }
     }
 
     return (
@@ -40,42 +30,47 @@ const CheckoutForm = () => {
                 name="firstName" 
                 value={formInputs.firstName}
                 onChange={handleChange} 
+                onBlur={handleBlur}
                 placeholder="First Name"
             />
-            <br />
+            <FormFieldErrorDisplay errors={formInputsErrors} inputField="firstName" />
             <input
                 type="text"
                 name="lastName" 
                 value={formInputs.lastName}
                 onChange={handleChange} 
+                onBlur={handleBlur}
                 placeholder="Last Name" 
             />
-            <br />
+           <FormFieldErrorDisplay errors={formInputsErrors} inputField="lastName" />
             <input
                 type="text"
                 name="email" 
                 value={formInputs.email}
                 onChange={handleChange} 
+                onBlur={handleBlur}
                 placeholder="Email" 
             />
-            <br />
+            <FormFieldErrorDisplay errors={formInputsErrors} inputField="email" />
             <input
                 type="text"
                 name="phone" 
                 value={formInputs.phone}
-                onChange={handleChange} 
+                onChange={handleChange}
+                onBlur={handleBlur}
                 placeholder="Phone Number" 
             />
-            <br />
+            <FormFieldErrorDisplay errors={formInputsErrors} inputField="phone" />
             <textarea
                 type="text"
                 name="address"
                 value={formInputs.address}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 placeholder="Address"
             />
-            <br />
-            <button className="place-order" onClick={placeOrder}>{buttonText}</button>
+            <FormFieldErrorDisplay errors={formInputsErrors} inputField="address" />
+            <button>{buttonText}</button>
         </form>
     )
 }
